@@ -36,7 +36,7 @@ public class InputHandler {
                     lineIndex++;
                     continue;
                 }
-                if (nextLine.charAt(0) == currentChar) {
+                if (nextLine.trim().charAt(0) == currentChar) {
                     blockLines.add(nextLine);
                     lineIndex++;
                 } else {

@@ -25,6 +25,7 @@ public class Main {
         for (Block block : blocks) {
             block.print();
         }
+        board.print();
         // Brute force algorithm
         if (Bruteforce.solve(board, blocks, used)) {
             long endTime = System.currentTimeMillis();
