@@ -15,10 +15,9 @@ public class Main {
         int emptyCount = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if (line.isEmpty()) {
+            if (line.trim().isEmpty()) {
                 emptyCount++;
                 if (emptyCount == 2) {  // Break on two consecutive empty lines
-                    scanner.close();
                     break;
                 }
             } else {
@@ -61,14 +60,14 @@ public class Main {
             for (String row : blockLines) {
                 blockWidth = Math.max(blockWidth, row.length());
             }
-            // Create and fill the block
             Block block = new Block();
             block.create(blockHeight, blockWidth);
             block.setType(currentChar);
             for (int r = 0; r < blockHeight; r++) {
                 String row = blockLines.get(r);
                 for (int c = 0; c < blockWidth; c++) {
-                    if (c < row.length() && row.charAt(c) == currentChar) {
+                    char ch = (c < row.length()) ? row.charAt(c) : ' ';
+                    if (ch == currentChar) {
                         block.set(r, c, 1);
                     } else {
                         block.set(r, c, 0);
@@ -79,17 +78,24 @@ public class Main {
         }
         if (blocksProcessed != numBlocks) {
             System.err.println("Not enough block definitions provided.");
+            scanner.close();
             return;
         }
-        // Brute force algorithm to place blocks
+        // Brute force algorithm
         boolean[] used = new boolean[numBlocks];
         if (Bruteforce.solve(board, blocks, used)) {
-            board.print();
-
+            board.printColored();
+            System.out.println("Banyak kasus yang ditinjau: " + Bruteforce.iterations);
+            System.out.println("Apakah anda ingin menyimpan solusi? (ya/tidak)");
+            String save = scanner.next();
+            if (save.equals("ya")) {
+                System.out.println("Masukkan nama file:");
+                String filename = scanner.next();
+                board.save(filename);
+            }
         } else {
             System.out.println("No solution found.");
         }
-        
-        
+        scanner.close();
     }
 }
