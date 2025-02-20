@@ -61,7 +61,7 @@ public class InputHandler {
             blocks[blocksProcessed++] = block;
         }
         if (blocksProcessed != numBlocks) {
-            System.err.println("Not enough block definitions provided.");
+            System.err.println("Jumlah block yang diberikan tidak cukup.");
             return null;
         }
         return blocks;

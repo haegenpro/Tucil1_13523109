@@ -10,14 +10,12 @@ public class Bruteforce {
                     }
                     return false;
                 }
-                // Try each block that hasn't been used yet
                 for (int i = 0; i < blocks.length; i++) {
                     if (!used[i]) {
                         Block originalBlock = blocks[i];
-                        // Try all 8 possible orientations (4 rotations, with and without mirroring)
                         for (int orient = 0; orient < 8; orient++) {
-                            // Clone the original block for this orientation attempt.
-                            Block orientedBlock = Block.cloneBlock(originalBlock);
+                            // Cloning original block
+                            Block orientedBlock = cloneBlock(originalBlock);
                             if (orient >= 4) {
                                 orientedBlock.mirror();
                             }
@@ -92,5 +90,16 @@ public class Bruteforce {
                 }
             }
         }
+    }
+    private static Block cloneBlock(Block block) {
+        Block newBlock = new Block();
+        newBlock.create(block.getHeight(), block.getWidth());
+        for (int i = 0; i < block.getHeight(); i++) {
+            for (int j = 0; j < block.getWidth(); j++) {
+                newBlock.set(i, j, block.getElmt(i, j));
+            }
+        }
+        newBlock.setType(block.getType());
+        return newBlock;
     }
 }
