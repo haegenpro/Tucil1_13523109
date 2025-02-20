@@ -9,24 +9,35 @@ public class Board {
     private int height; private int width;
     public int[][] board;
     public char[][] boardChar;
-    public static final String ANSI_RESET  = "\u001B[0m";
-    public static final String ANSI_BLACK  = "\u001B[30m";
-    public static final String ANSI_RED    = "\u001B[31m";
-    public static final String ANSI_GREEN  = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE   = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN   = "\u001B[36m";
-    public static final String ANSI_WHITE  = "\u001B[37m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public static Map<Character, String> colorMap = new HashMap<>();
     public Board() {
-        colorMap.put('A', ANSI_RED);
-        colorMap.put('B', ANSI_GREEN);
-        colorMap.put('C', ANSI_YELLOW);
-        colorMap.put('D', ANSI_BLUE);
-        colorMap.put('E', ANSI_PURPLE);
-        colorMap.put('F', ANSI_CYAN);
-        colorMap.put('G', ANSI_WHITE);
+        colorMap.put('A', "\u001B[31m");
+        colorMap.put('B', "\u001B[32m");
+        colorMap.put('C', "\u001B[33m");
+        colorMap.put('D', "\u001B[34m");
+        colorMap.put('E', "\u001B[35m");
+        colorMap.put('F', "\u001B[36m");
+        colorMap.put('G', "\u001B[37m");
+        colorMap.put('H', "\u001B[38;5;208m");
+        colorMap.put('I', "\u001B[38;5;214m");
+        colorMap.put('J', "\u001B[38;5;220m");
+        colorMap.put('K', "\u001B[38;5;226m");
+        colorMap.put('L', "\u001B[38;5;190m");
+        colorMap.put('M', "\u001B[38;5;154m");
+        colorMap.put('N', "\u001B[38;5;118m");
+        colorMap.put('O', "\u001B[38;5;82m");
+        colorMap.put('P', "\u001B[38;5;45m");
+        colorMap.put('Q', "\u001B[38;5;105m");
+        colorMap.put('R', "\u001B[38;5;159m");
+        colorMap.put('S', "\u001B[38;5;111m");
+        colorMap.put('T', "\u001B[38;5;117m");
+        colorMap.put('U', "\u001B[38;5;123m");
+        colorMap.put('V', "\u001B[38;5;129m");
+        colorMap.put('W', "\u001B[38;5;135m");
+        colorMap.put('X', "\u001B[38;5;141m");
+        colorMap.put('Y', "\u001B[38;5;147m");
+        colorMap.put('Z', "\u001B[38;5;153m");
     }
     public void create(int h, int w) {
         this.height = h;
@@ -89,6 +100,7 @@ public class Board {
             }
             System.out.println();
         }
+        System.out.println();
     }
     public void save(String filename) {
         try {

@@ -14,7 +14,6 @@ public class Bruteforce {
                     if (!used[i]) {
                         Block originalBlock = blocks[i];
                         for (int orient = 0; orient < 8; orient++) {
-                            // Cloning original block
                             Block orientedBlock = cloneBlock(originalBlock);
                             if (orient >= 4) {
                                 orientedBlock.mirror();
