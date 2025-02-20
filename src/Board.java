@@ -57,7 +57,7 @@ public class Board {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 char ch = boardChar[i][j];
-                if (ch == '\u0000'| ch == '.') {
+                if (ch == '\u0000' | ch == '.') {
                     System.out.print(" ");
                 } else {
                     // Get the color for this character (default to no color)
@@ -74,7 +74,12 @@ public class Board {
             FileWriter writer = new FileWriter(file);
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    writer.write(boardChar[i][j]);
+                    char ch = boardChar[i][j];
+                    if (ch == '\u0000' | ch == '.') {
+                        writer.write(" ");
+                    } else {
+                        writer.write(ch);
+                    }
                 }
                 writer.write("\n");
             }
