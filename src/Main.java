@@ -22,10 +22,6 @@ public class Main {
         }
         boolean[] used = new boolean[numBlocks];
         long startTime = System.currentTimeMillis();
-        for (Block block : blocks) {
-            block.print();
-        }
-        board.print();
         // Brute force algorithm
         if (Bruteforce.solve(board, blocks, used)) {
             long endTime = System.currentTimeMillis();

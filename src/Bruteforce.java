@@ -2,43 +2,45 @@ public class Bruteforce {
     public static long iterations = 0;
     public static boolean solve(Board board, Block[] blocks, boolean[] used) {      
         iterations++;
-
-        int[] pos = findEmptyCell(board);
-        if (pos == null) {
-            if (allBlocksUsed(used)) {
-                return true;
-            }
-            return false;
-        }
-        if (allBlocksUsed(used)) {
-            return false;
-        }
-        int row = pos[0];
-        int col = pos[1];
-        // Try each block that hasn't been used yet
-        for (int i = 0; i < blocks.length; i++) {
-            if (!used[i]) {
-                Block currentBlock = blocks[i];
-                for (int j = 1; j < 9; j++) {
-                    iterations++;
-
-                    if (j % 4 == 0) {
-                        currentBlock.mirror();
-                    } 
-                    else {
-                        currentBlock.rotate();
+        for (int row = 0; row < board.getHeight(); row++) {
+            for (int col = 0; col < board.getWidth(); col++) {
+                if (allBlocksUsed(used)) {
+                    if (findEmptyCell(board) == null) {
+                        return true;
                     }
-                    if (canPlace(currentBlock, board, row, col)) {
-                        placeBlock(currentBlock, board, row, col);
-                        used[i] = true;
-                        if (solve(board, blocks, used)) {
-                            return true;
+                    return false;
+                }
+                // Try each block that hasn't been used yet
+                for (int i = 0; i < blocks.length; i++) {
+                    if (!used[i]) {
+                        Block originalBlock = blocks[i];
+                        // Try all 8 possible orientations (4 rotations, with and without mirroring)
+                        for (int orient = 0; orient < 8; orient++) {
+                            // Clone the original block for this orientation attempt.
+                            Block orientedBlock = Block.cloneBlock(originalBlock);
+                            if (orient >= 4) {
+                                orientedBlock.mirror();
+                            }
+                            int rotations = orient % 4;
+                            for (int r = 0; r < rotations; r++) {
+                                orientedBlock.rotate();
+                            }
+                            if (canPlace(orientedBlock, board, row, col)) {
+                                placeBlock(orientedBlock, board, row, col);
+                                used[i] = true;
+                                if (solve(board, blocks, used)) {
+                                    return true;
+                                }
+                                removeBlock(orientedBlock, board, row, col);
+                                used[i] = false;
+                            }
                         }
-                        removeBlock(currentBlock, board, row, col);
-                        used[i] = false;
                     }
                 }
             }
+        }
+        if (allBlocksUsed(used)) {
+            return true;
         }
         return false;
     }

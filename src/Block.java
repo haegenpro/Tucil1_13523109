@@ -54,4 +54,15 @@ public class Block {
             System.out.println();
         }
     }
+    public static Block cloneBlock(Block block) {
+        Block newBlock = new Block();
+        newBlock.create(block.getHeight(), block.getWidth());
+        for (int i = 0; i < block.getHeight(); i++) {
+            for (int j = 0; j < block.getWidth(); j++) {
+                newBlock.set(i, j, block.getElmt(i, j));
+            }
+        }
+        newBlock.setType(block.getType());
+        return newBlock;
+    }
 }
