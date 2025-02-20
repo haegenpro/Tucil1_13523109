@@ -24,7 +24,8 @@ public class Bruteforce {
 
                     if (j % 4 == 0) {
                         currentBlock.mirror();
-                    } else {
+                    } 
+                    else {
                         currentBlock.rotate();
                     }
                     if (canPlace(currentBlock, board, row, col)) {

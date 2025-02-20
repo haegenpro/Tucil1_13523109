@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Board {
     private int height; private int width;
@@ -30,8 +31,21 @@ public class Board {
     public void create(int h, int w) {
         this.height = h;
         this.width = w;
-        board = new int[height][width];
-        boardChar = new char[height][width];
+        this.board = new int[height][width];
+        this.boardChar = new char[height][width];
+    }
+    public void createCustom(int h, int w, Scanner scanner) {
+        create(h, w);
+        for (int i = 0; i < h; i++) {
+            String line = scanner.nextLine();
+            for (int j = 0; j < w; j++) {
+                char c = line.charAt(j);
+                if (c == '.') {
+                    this.board[i][j] = 1;
+                    this.boardChar[i][j] = '.';
+                }
+            }
+        }
     }
     public int getHeight() {
         return height;
@@ -53,14 +67,22 @@ public class Board {
         board[h][w] = 0;
         boardChar[h][w] = '\u0000';
     }
+    public void print() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(board[i][j]);
+            }
+            System.out.println();
+        }
+    }
     public void printColored() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 char ch = boardChar[i][j];
                 if (ch == '\u0000' | ch == '.') {
                     System.out.print(" ");
-                } else {
-                    // Get the color for this character (default to no color)
+                } 
+                else {
                     String color = colorMap.getOrDefault(ch, ANSI_RESET);
                     System.out.print(color + ch + ANSI_RESET);
                 }
