@@ -4,12 +4,11 @@ import java.io.FileReader;
 
 public class Main {
     public static void main(String[] args) {
-        // Scanner for console input
         Scanner consoleScanner = new Scanner(System.in);
-        
-        System.out.println("\u001B[32m" + "BLOCK PUZZLE AUTO SOLVER\n");
-        System.out.println("\u001B[33m" + "Input txt file name:");
+        System.out.println("\u001B[33m" + "BLOCK PUZZLE AUTO SOLVER\n");
+        System.out.println("\u001B[32m" + "Input txt file name:" + "\u001B[0m");
         String filename = consoleScanner.nextLine();
+        System.out.println();
         Board board = new Board();
         Block[] blocks = null;
         int numBlocks = 0;
@@ -36,20 +35,20 @@ public class Main {
         }
         boolean[] used = new boolean[numBlocks];
         long startTime = System.currentTimeMillis();     
-        // Brute force algorithm
         if (Bruteforce.solve(board, blocks, used)) {
             long endTime = System.currentTimeMillis();
             board.printColored();
-            System.out.println("Time spent: " + (endTime - startTime) + " ms\n");
-            System.out.println("# of cases reviewed: " + Bruteforce.iterations + "\n");
-            System.out.println("Would you like to save the solution? (yes/no)");
+            System.out.println("\u001B[36m" + "Time spent: " + (endTime - startTime) + " ms\n");
+            System.out.println("\u001B[31m" +"# of cases reviewed: " + Bruteforce.iterations + "\n");
+            System.out.println("\u001B[33m" + "Would you like to save the solution? (yes/no)" + "\u001B[0m");
             String save = consoleScanner.next();
             if (save.equals("yes")) {
-                System.out.println("Enter filename:");
+                System.out.println("\u001B[32m" + "Enter filename:" + "\u001B[0m");
                 String savename = consoleScanner.next();
                 board.save("../test/" + savename);
             }
-        } else {
+        } 
+        else {
             System.out.println("No solution found.");
         }
         consoleScanner.close();
