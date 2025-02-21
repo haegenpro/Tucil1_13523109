@@ -1,6 +1,15 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileReader;
+//import javafx.application.Application;
+//import javafx.stage.Stage;
+//import javafx.scene.layout.GridPane;
+//import javafx.scene.Scene;
+//import javafx.scene.paint.Color;
+//import javafx.scene.control.Button;
+//import javafx.event.EventHandler;
+//import javafx.event.ActionEvent;
+//import javafx.scene.input.MouseEvent;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,7 +21,7 @@ public class Main {
         Board board = new Board();
         Block[] blocks = null;
         int numBlocks = 0;
-        try (Scanner fileScanner = new Scanner(new FileReader(new File("../test/" + filename)))) {
+        try (Scanner fileScanner = new Scanner(new FileReader(new File("../testcase/" + filename)))) {
             int height = fileScanner.nextInt();
             int width = fileScanner.nextInt();
             numBlocks = fileScanner.nextInt();

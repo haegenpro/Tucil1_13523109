@@ -1,7 +1,6 @@
 public class Bruteforce {
-    public static long iterations = 0;
+    public static long iterations = 1;
     public static boolean solve(Board board, Block[] blocks, boolean[] used) {      
-        iterations++;
         for (int row = 0; row < board.getHeight(); row++) {
             for (int col = 0; col < board.getWidth(); col++) {
                 if (allBlocksUsed(used)) {
@@ -27,7 +26,7 @@ public class Bruteforce {
                                 used[i] = true;
                                 if (solve(board, blocks, used)) {
                                     return true;
-                                }
+                                } 
                                 removeBlock(orientedBlock, board, row, col);
                                 used[i] = false;
                             }
@@ -39,6 +38,7 @@ public class Bruteforce {
         if (allBlocksUsed(used)) {
             return true;
         }
+        iterations++;
         return false;
     }
     private static boolean allBlocksUsed(boolean[] used) {
