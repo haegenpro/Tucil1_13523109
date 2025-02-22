@@ -61,7 +61,7 @@ public class InputHandler {
             blocks[blocksProcessed++] = block;
         }
         if (blocksProcessed != numBlocks) {
-            System.err.println("Jumlah block yang diberikan tidak cukup.");
+            System.err.println("The number of blocks has mismatched the input.");
             return null;
         }
         return blocks;
