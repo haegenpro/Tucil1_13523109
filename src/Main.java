@@ -9,14 +9,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
         System.out.println("\u001B[33m" + "BLOCK PUZZLE AUTO SOLVER\n");
-        System.out.println("\u001B[32m" + "Input file name located at the /testcase folder:" + "\u001B[0m");
+        System.out.println("\u001B[32m" + "Input file name located at the /test/testcase folder:" + "\u001B[0m");
         String filename = consoleScanner.nextLine().trim();
         System.out.println();
         Board board = new Board();
         Block[] blocks = null;
         int numBlocks = 0;
 
-        try (Scanner fileScanner = new Scanner(new FileReader(new File("../testcase/" + filename)))) {
+        try (Scanner fileScanner = new Scanner(new FileReader(new File("../test/testcase/" + filename)))) {
             int height = fileScanner.nextInt();
             int width = fileScanner.nextInt();
             numBlocks = fileScanner.nextInt();
@@ -62,8 +62,8 @@ public class Main {
             if (save.equals("yes")) {
                 System.out.println("\u001B[32m" + "Enter filename:" + "\u001B[0m");
                 String savename = consoleScanner.next().trim();
-                board.save("../test/" + savename);
-                System.out.println("\u001B[36m" + "Solution saved as " + savename + " in the /test folder." + "\u001B[0m");
+                board.save("../test/solutions/" + savename);
+                System.out.println("\u001B[36m" + "Solution saved as " + savename + " in the /test/solutions folder." + "\u001B[0m");
             } else if (!save.equals("no")) {
                 System.out.println("\u001B[36m" + "Unrecognized input. No solution will be saved." + "\u001B[0m");
             }
