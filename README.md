@@ -15,7 +15,7 @@ Block Puzzle Auto Solver is a Java program designed to solve block puzzle proble
 - **Java JDK 8 or higher:** This program requires the JDK to compile and run.
 - **Ubuntu Terminal (optional):** For running commands like `ls`, `pwd`, and `tree`.
 
-## How to Compile the Program
+## How to Compile
 Make sure you are in the project directory Tucil1_13523109. To compile all Java files, run:
 
 ```bash
