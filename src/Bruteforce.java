@@ -1,3 +1,5 @@
+
+
 public class Bruteforce {
     public static long iterations = 1;
     public static boolean solve(Board board, Block[] blocks, boolean[] used) {      
@@ -11,22 +13,13 @@ public class Bruteforce {
                 }
                 for (int i = 0; i < blocks.length; i++) {
                     if (!used[i]) {
-                        Block originalBlock = blocks[i];
-                        for (int orient = 0; orient < 8; orient++) {
-                            Block orientedBlock = cloneBlock(originalBlock);
-                            if (orient >= 4) {
-                                orientedBlock.mirror();
-                            }
-                            int rotations = orient % 4;
-                            for (int r = 0; r < rotations; r++) {
-                                orientedBlock.rotate();
-                            }
+                        for (Block orientedBlock : blocks[i].orientations) {
                             if (canPlace(orientedBlock, board, row, col)) {
                                 placeBlock(orientedBlock, board, row, col);
                                 used[i] = true;
                                 if (solve(board, blocks, used)) {
                                     return true;
-                                } 
+                                }
                                 removeBlock(orientedBlock, board, row, col);
                                 used[i] = false;
                             }
@@ -35,20 +28,10 @@ public class Bruteforce {
                 }
             }
         }
-        if (allBlocksUsed(used)) {
-            return true;
-        }
         iterations++;
         return false;
     }
-    private static boolean allBlocksUsed(boolean[] used) {
-        for (boolean flag : used) {
-            if (!flag) {
-                return false;
-            }
-        }
-        return true;
-    }
+
     private static int[] findEmptyCell(Board board) {
         for (int i = 0; i < board.getHeight(); i++) {
             for (int j = 0; j < board.getWidth(); j++) {
@@ -59,6 +42,7 @@ public class Bruteforce {
         }
         return null;
     }
+
     private static boolean canPlace(Block block, Board board, int row, int col) {
         if (row + block.getHeight() > board.getHeight() || col + block.getWidth() > board.getWidth()) {
             return false;
@@ -72,6 +56,7 @@ public class Bruteforce {
         }
         return true;
     }
+
     private static void placeBlock(Block block, Board board, int row, int col) {
         for (int i = 0; i < block.getHeight(); i++) {
             for (int j = 0; j < block.getWidth(); j++) {
@@ -81,6 +66,7 @@ public class Bruteforce {
             }
         }
     }
+
     private static void removeBlock(Block block, Board board, int row, int col) {
         for (int i = 0; i < block.getHeight(); i++) {
             for (int j = 0; j < block.getWidth(); j++) {
@@ -90,15 +76,13 @@ public class Bruteforce {
             }
         }
     }
-    private static Block cloneBlock(Block block) {
-        Block newBlock = new Block();
-        newBlock.create(block.getHeight(), block.getWidth());
-        for (int i = 0; i < block.getHeight(); i++) {
-            for (int j = 0; j < block.getWidth(); j++) {
-                newBlock.set(i, j, block.getElmt(i, j));
+
+    private static boolean allBlocksUsed(boolean[] used) {
+        for (boolean b : used) {
+            if (!b) {
+                return false;
             }
         }
-        newBlock.setType(block.getType());
-        return newBlock;
+        return true;
     }
 }

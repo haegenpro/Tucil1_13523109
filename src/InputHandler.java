@@ -58,10 +58,11 @@ public class InputHandler {
                     block.set(r, c, (ch == currentChar) ? 1 : 0);
                 }
             }
+            block.computeOrientations();
             blocks[blocksProcessed++] = block;
         }
         if (blocksProcessed != numBlocks) {
-            System.err.println("The number of blocks has mismatched the input.");
+            System.err.println("\u001B[36m" + "The number of blocks has mismatched the input." + "\u001B[0m");
             return null;
         }
         return blocks;

@@ -1,0 +1,7 @@
+BB   CC
+AAA CCC
+ AACCD 
+  AAA  
+ HGGGG 
+HHH GGF
+HH   FF

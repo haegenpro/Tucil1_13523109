@@ -1,4 +1,4 @@
-6 6 9
+6 6 7
 DEFAULT
 AAAA
 A  A
@@ -8,10 +8,10 @@ AAAA
 BB
 C
 CC
+DDD
 DD
 EE
  EE
 FFFF
-GGGG
-HHH
-I
+FFFF
+G

@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner consoleScanner = new Scanner(System.in);
         System.out.println("\u001B[33m" + "BLOCK PUZZLE AUTO SOLVER\n");
-        System.out.println("\u001B[32m" + "Input txt file name:" + "\u001B[0m");
+        System.out.println("\u001B[32m" + "Input file name located at the /testcase folder:" + "\u001B[0m");
         String filename = consoleScanner.nextLine().trim();
         System.out.println();
         Board board = new Board();
@@ -29,19 +29,19 @@ public class Main {
             }
             blocks = InputHandler.readBlocks(fileScanner, numBlocks);
         } catch (FileNotFoundException e) {
-            System.out.println("Error: File not found. Please check the file name and try again.");
+            System.out.println("\u001B[36m" + "Error: File not found. Please check the file name and try again." + "\u001B[0m");
             consoleScanner.close();
             return;
         } catch (InputMismatchException e) {
-            System.out.println("Error: The file contains data in an unexpected format. Please verify that all numbers and values are correct.");
+            System.out.println("\u001B[36m" + "Error: The file contains data in an unexpected format. Please verify that all numbers and values are correct." + "\u001B[0m");
             consoleScanner.close();
             return;
         } catch (NoSuchElementException e) {
-            System.out.println("Error: The input file is missing required values.");
+            System.out.println("\u001B[36m" + "Error: The input file is missing required values." + "\u001B[0m");
             consoleScanner.close();
             return;
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred: " + e.getMessage());
+            System.out.println("\u001B[36m" + "An unexpected error occurred: " + "\u001B[0m" + e.getMessage());
             consoleScanner.close();
             return;
         }
@@ -63,11 +63,12 @@ public class Main {
                 System.out.println("\u001B[32m" + "Enter filename:" + "\u001B[0m");
                 String savename = consoleScanner.next().trim();
                 board.save("../test/" + savename);
+                System.out.println("\u001B[36m" + "Solution saved as " + savename + " in the /test folder." + "\u001B[0m");
             } else if (!save.equals("no")) {
-                System.out.println("Unrecognized input. No solution will be saved.");
+                System.out.println("\u001B[36m" + "Unrecognized input. No solution will be saved." + "\u001B[0m");
             }
         } else {
-            System.out.println("No solution found.");
+            System.out.println("\u001B[36m" + "No solution found." + "\u001B[0m");
         }
         consoleScanner.close();
     }
